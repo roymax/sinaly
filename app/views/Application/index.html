@@ -1,0 +1,13 @@
+#{extends 'templates/1column.html' /}
+#{set title:'Sinaly' /}
+                                 
+#{if statuses}
+<h3>Timeline </h3>
+#{list items:statuses, as:'st'}
+	<li>${st.user.screenName} 说： ${st.text}</li>
+#{/list} 	                 
+#{/if}
+#{else}
+<a href="/oauth">点击登录QQ微博</a>    
+#{/else}
+	

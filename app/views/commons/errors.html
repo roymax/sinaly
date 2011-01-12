@@ -1,0 +1,16 @@
+#{ifErrors}
+<div class="error" >
+   	<h1 >Oops…</h1>
+   	#{errors}
+       <li>${error}</li>
+   	#{/errors}
+	#{if flash.error}
+		<p>${flash.error}</p>
+	#{/if}
+</div>
+#{/ifErrors}
+#{if flash.success}
+	<div class="success">
+		&{flash.success}
+	</div>
+#{/if}
