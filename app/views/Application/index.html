@@ -1,13 +1,23 @@
-#{extends 'templates/1column.html' /}
+#{extends 'templates/1column.html' /} 
 #{set title:'Sinaly' /}
-                                 
+
+#{if tuser}
+
+#{/if} 
+
 #{if statuses}
-<h3>Timeline </h3>
 #{list items:statuses, as:'st'}
-	<li>${st.user.screenName} 说： ${st.text}</li>
-#{/list} 	                 
-#{/if}
+<li>
+<dl>
+	<dd>${st.user.screenName} 发布于 ${st.createdAt.since(true)}</dd>
+	<dt>${st.text}</dt>
+</dl>
+#{if st.retweetDetails} 
+<div>@${st.retweetDetails.user.name} 说： ${st.retweetDetails.text}</div>
+#{/if}</li>
+#{/list} 
+#{/if} 
 #{else}
-<a href="/oauth">点击登录QQ微博</a>    
+<a href="/oauth">绑定新浪微博</a>
 #{/else}
-	
+

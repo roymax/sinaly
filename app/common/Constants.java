@@ -14,5 +14,8 @@ public class Constants extends Object {
 			"sina.consumer_key", "");
 	public static String SINA_CONSUMER_SECRET = Play.configuration.getProperty(
 			"sina.consumer_secret", "");
+	
+	public static String TRUNK_API_KEY = Play.configuration.getProperty(
+			"trunkly.api_key", "");
 
 }

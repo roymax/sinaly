@@ -5,7 +5,7 @@
 # Home page
 GET     /                                       Application.index     
 GET		/oauth								   	Application.authenticate  
-
+GET		/cron/sina								Application.sinaTimelineCron
 # Map static resources from the /app/public folder to the /public path
 GET     /public/                                staticDir:public
 
