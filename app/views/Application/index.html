@@ -1,23 +1,36 @@
-#{extends 'templates/1column.html' /} 
-#{set title:'Sinaly' /}
+<html>
+<head>
 
-#{if tuser}
+</head>
+</html>#{extends 'templates/1column.html' /} #{set title:'Sinaly' /}
+<div class="span-14 prefix-5 suffix-5 last" >
+	<p>这是用于一个<a href="http://t.sina.com.cn/roymax">新浪微博</a>与<a
+		href="http://trunk.ly">Trunk.ly</a>的连接器。
+	它主要的功能就是将我新浪微博上发布及转发的包含链接的微博自动收集到trunk.ly上，方便于回溯跟踪管理。</p>
+</div>
 
-#{/if} 
+#{if me}
+<div class="span-14 prefix-5 suffix-5 last">
+<img src="${me.profileImageUrl}"
+	alt="${me.name}的新浪微博">
+<div>${me.name}</div>  
+<div>  
+有以下方式可以找到我:   
+<ul>
+<li>Blog: <a href="${me.url}">${me.url}</a></li>
+<li>Sina: <a href="http://t.sina.com.cn/roymax">@RoyMax</a></li>
+<li>Twitter: <a href="http://twitter.com/roy_wei">@roy_wei</a></li>
+<li>Trunk.ly: <a href="http://trunk.ly/roymax">roymax</a></li>
+</ul>
+</div>
+<div style="border:1px solid #c5fbfd">
+<p >${me.statusText} <br>
+<span style="float:right;">最后发布于: ${me.statusCreatedAt.since()}</span>
+</p>
+</div>
+</div>
 
-#{if statuses}
-#{list items:statuses, as:'st'}
-<li>
-<dl>
-	<dd>${st.user.screenName} 发布于 ${st.createdAt.since(true)}</dd>
-	<dt>${st.text}</dt>
-</dl>
-#{if st.retweetDetails} 
-<div>@${st.retweetDetails.user.name} 说： ${st.retweetDetails.text}</div>
-#{/if}</li>
-#{/list} 
-#{/if} 
-#{else}
-<a href="/oauth">绑定新浪微博</a>
+#{/if} #{else}
+<div class="center"><a href="/oauth">绑定新浪微博</a></div>
 #{/else}
 

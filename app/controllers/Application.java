@@ -30,26 +30,24 @@ public class Application extends Controller {
 		System.setProperty("weibo4j.oauth.consumerKey", Weibo.CONSUMER_KEY);
 		System.setProperty("weibo4j.oauth.consumerSecret",
 				Weibo.CONSUMER_SECRET);
-
+		
 		User user = User.getGuess();
 		TokenPair tp = user.getTokenPair();
 		Logger.debug("token : %s", tp.token);
 		Logger.debug("secret : %s", tp.secret);
-		if (tp.token != null) {
+		if (tp.token != null && !"".equals(tp.token)) {
 			Weibo sina = new Weibo();
 
 			sina.setToken(tp.token, tp.secret);
-			List<Status> statuses = new ArrayList();
+//			List<Status> statuses = new ArrayList();
 			weibo4j.User tuser = null;
 			try {
-				statuses = sina.getUserTimeline();
-				tuser = sina.showUser(sina.getUserId());
+//				statuses = sina.getUserTimeline();               
+				tuser = sina.verifyCredentials();
 				renderArgs.put("me", tuser);
 			} catch (WeiboException e) {
 				Logger.debug(e.getMessage());
 			}
-
-			render(statuses);
 		}
 		render();
 	}
@@ -79,7 +77,6 @@ public class Application extends Controller {
 		// We received the unauthorized tokens in the OAuth object - store it
 		// before we proceed
 		Logger.debug("token %s", tokens.token);
-
 		User.getGuess().setTokenPair(tokens);
 		redirect(sinaOAuth.redirectUrl(tokens));
 	}
@@ -95,6 +92,9 @@ public class Application extends Controller {
 		Logger.debug("sina timeline");
 		// 获取当天的timeline
 		// 分析是否含URL，如有获取分享URL中的title和原链接, note和text为微博内容
+        System.setProperty("weibo4j.oauth.consumerKey", Weibo.CONSUMER_KEY);
+		System.setProperty("weibo4j.oauth.consumerSecret",
+				Weibo.CONSUMER_SECRET);
 
 		User user = User.getGuess();
 		TokenPair tp = user.getTokenPair();

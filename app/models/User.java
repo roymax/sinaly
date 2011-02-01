@@ -6,12 +6,13 @@ import siena.Id;
 import siena.Model;
 import siena.Query;
 import siena.Table;
+import siena.Index;
 
 @Table("users")
 public class User extends Model {
 	@Id(Generator.AUTO_INCREMENT)
 	public Long id;
-
+    @Index("username_index")
 	public String username;
 	public String provider;    
 	public String token;
