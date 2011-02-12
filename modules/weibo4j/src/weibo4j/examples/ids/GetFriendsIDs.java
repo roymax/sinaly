@@ -1,4 +1,3 @@
-﻿
 package weibo4j.examples.ids;
 
 import weibo4j.Weibo;

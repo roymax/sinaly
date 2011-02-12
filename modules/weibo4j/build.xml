@@ -25,6 +25,7 @@
                 <include name="**/play.static"/>
             </fileset>
         </copy>
+		<mkdir dir="lib" />
         <jar destfile="lib/play-weibo4j.jar" basedir="tmp/classes">
             <manifest>
                 <section name="Play-module">
@@ -37,7 +38,8 @@
 
     <target name="compile">
         <mkdir dir="tmp/classes" />
-        <javac srcdir="src" destdir="tmp/classes" target="1.5" debug="true">
+        <javac srcdir="src" destdir="tmp/classes" target="1.5" debug="true" encoding="UTF-8"> 
+			
             <classpath refid="project.classpath" />
         </javac>
     </target>
